@@ -24,9 +24,10 @@ bookRouter.route('/')
 bookRouter.route('/books')
     .post(function (req, res) {
         var book = new Book(req.body);
+        book.save();
         console.log(book);
 
-        res.send(book)
+        res.status(201).send(book)
     })
     .get(function(req, res){
         var query = _.pick(req.query || {}, 'title', 'genre', 'author');
@@ -41,7 +42,9 @@ bookRouter.route('/books')
 
 bookRouter.route('/books/:bookId')
     .get(function(req, res){
-        Book.findById(req.bookId, function(err, book){
+        console.log(req.params.bookId);
+        Book.findById(req.params.bookId, function(err, book){
+
             if(err){
                 res.status(500).send(err);
             } else {
