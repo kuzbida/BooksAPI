@@ -1,5 +1,6 @@
 var express = require('express'),
-    Book = require('./models/bookModel'),
+    Book = require('../models/bookModel'),
+    _ = require('underscore-node'),
     bookRouter = express.Router();
 
 var routes = function(){
@@ -14,8 +15,6 @@ var routes = function(){
         .post(function (req, res) {
             var book = new Book(req.body);
             book.save();
-            console.log(book);
-
             res.send(book)
         })
         .get(function(req, res){
@@ -42,4 +41,4 @@ var routes = function(){
     return bookRouter;
 };
 
-module.exports = routes;
+module.exports = routes();
