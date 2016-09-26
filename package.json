@@ -12,8 +12,11 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
+    "gulp-mocha": "^3.0.1",
     "gulp-nodemon": "^2.1.0",
     "mongoose": "^4.6.0",
+    "should": "^11.1.0",
+    "sinon": "^1.17.6",
     "underscore-node": "^0.1.2"
   }
 }
