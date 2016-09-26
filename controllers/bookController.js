@@ -7,9 +7,10 @@ function bookController(Book){
             res.send('Title is required')
         } else {
             var book = new Book(req.body);
-            book.save();
-            res.status(201);
-            res.send(book);
+            book.save(function () {
+                res.status(201);
+                res.send(book);
+            });
         }
     }
 

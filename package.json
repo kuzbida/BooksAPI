@@ -18,5 +18,9 @@
     "should": "^11.1.0",
     "sinon": "^1.17.6",
     "underscore-node": "^0.1.2"
+  },
+  "devDependencies": {
+    "gulp-env": "^0.4.0",
+    "supertest": "^2.0.0"
   }
 }
