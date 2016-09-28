@@ -20,7 +20,8 @@ function bookController(Book){
             if(err){
                 res.status(500).send(err);
             } else {
-                res.json(books);}
+                res.json(books);
+            }
         });
     }
 
@@ -28,6 +29,6 @@ function bookController(Book){
         get: get,
         post: post
     }
-};
+}
 
 module.exports = bookController;

@@ -5,7 +5,8 @@ var express = require('express'),
     bookRouter = require('./Routes/bookRoutes')(Book);
 
 var db;
-if(process.env.ENV === 'Test') {
+console.log('___env', process.env.ENV);
+if(process.env.ENV === 'Test' && false) {
     db = mongoose.connect('mongodb://localhost/bookAPI_test');
 } else {
     db = mongoose.connect('mongodb://localhost/bookAPI');

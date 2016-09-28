@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     gulpMocha = require('gulp-mocha'),
-    env = require('gulp-env'),
-    supertest = require('supertest');
+    env = require('gulp-env');
 
 gulp.task('default', function(){
    nodemon({
