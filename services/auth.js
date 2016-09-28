@@ -23,7 +23,7 @@ function token(req, res){
 
                 // if user is found and password is right
                 // create a token
-                var token = jwt.sign(user, secretKey);
+                var token = jwt.sign({user_id: user._id}, secretKey);
 
                 // return the information including token as JSON
                 res.json({
@@ -50,6 +50,7 @@ function checkToken(req, res, next) {
                 return res.json({ success: false, message: 'Failed to authenticate token.' });
             } else {
                 // if everything is good, save to request for use in other routes
+                console.log(decoded);
                 req.decoded = decoded;
                 next();
             }
