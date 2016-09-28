@@ -31,6 +31,9 @@ app.use(morgan('dev'));
 
 app.post('/api/token', auth.token);
 
+//check token before secure endpoints
+app.use(auth.checkToken);
+
 app.use('/api/books', bookRouter);
 app.use('/api/users', userRouter);
 

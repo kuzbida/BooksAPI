@@ -1,6 +1,6 @@
 module.exports = {
 
-    'secret': 'ilovescotchyscotch',
+    'secret': 'TOTALSECRET',
     'database': 'mongodb://localhost/bookAPI'
 
 };
