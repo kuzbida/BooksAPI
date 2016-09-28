@@ -3,14 +3,12 @@ var express = require('express'),
     userRouter = express.Router();
 
 var routes = function(User){
-
+    
+    var userController = require('../controllers/userController')(User);
 
     userRouter.route('/')
-        .get(function(req, res){
-            User.find({}, function(err, users) {
-                res.json(users);
-            });
-        });
+        .get(userController.get)
+        .post(userController.post);
 
     userRouter.route('/setup')
         .get(function(req, res) {
