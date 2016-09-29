@@ -1,4 +1,5 @@
-var User = require('../models/userModel'),
+var bcrypt = require('bcryptjs'),
+    User = require('../models/userModel'),
     jwt    = require('jsonwebtoken'),
     config = require('../config'),
     secretKey = config.secret;
@@ -15,24 +16,27 @@ function token(req, res){
         if (!user) {
             res.json({ success: false, message: 'Authentication failed. User not found.' });
         } else if (user) {
+            console.log('user.password', user.password);
+            bcrypt.compare(req.body.password, user.password, function(err, result) {
+                if(err){
+                    res.status(500);
+                    req.send(err);
+                } else if(result === true){
+                    console.log(result);
+                    // if user is found and password is right
+                    // create a token
+                    var token = jwt.sign({user_id: user._id}, secretKey);
 
-            // check if password matches
-            if (user.password != req.body.password) {
-                res.status(400).json({ success: false, message: 'Authentication failed. Wrong password.' });
-            } else {
+                    // return the information including token as JSON
+                    res.json({
+                        token: token
+                    });
+                } else {
+                    res.status(400).json({ success: false, message: 'Authentication failed. Wrong password.' });
+                }
 
-                // if user is found and password is right
-                // create a token
-                var token = jwt.sign({user_id: user._id}, secretKey);
-
-                // return the information including token as JSON
-                res.json({
-                    token: token
-                });
-            }
-
+            });
         }
-
     });
 }
 

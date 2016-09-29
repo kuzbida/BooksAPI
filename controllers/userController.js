@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 function userController(User){
 
@@ -7,11 +7,22 @@ function userController(User){
             res.status(400);
             res.send('Bad request')
         } else {
-            var user = new User(req.body);
-            user.save(function () {
-                res.status(201);
-                res.send(User);
+            console.log(req.body.password);
+            var data = _.pick(req.body, 'name', 'password');
+            bcrypt.hash(req.body.password, 8, function(err, hash) {
+                if(err){
+                    res.status(500);
+                    req.send(err);
+                } else if(hash) {
+                    data.password = hash;
+                    var user = new User(data);
+                    user.save(function () {
+                        res.status(201);
+                        res.send(User);
+                    });
+                }
             });
+
         }
     }
 
