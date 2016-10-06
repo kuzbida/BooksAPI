@@ -18,6 +18,7 @@
     "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.0",
     "morgan": "^1.7.0",
+    "multer": "^1.2.0",
     "should": "^11.1.0",
     "sinon": "^1.17.6",
     "underscore-node": "^0.1.2"
