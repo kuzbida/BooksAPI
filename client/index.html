@@ -6,6 +6,8 @@
 		<h1>Angular Node File Upload</h1>
         <form  ng-controller="MyCtrl as up" name="up.upload_form">
                 Single Image with validations
+            <input type="text" name="name" ng-model="up.file.name" placeholder="File name"><br>
+            <textarea name="description" ng-model="up.file.description" cols="30" rows="10" placeholder="File description"></textarea><br>
             <input 
                 type="file" 
                 ngf-select 
